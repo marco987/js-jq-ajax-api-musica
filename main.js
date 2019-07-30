@@ -18,22 +18,34 @@ $(document).ready(function() {
       success: function(data){
         // Memorizzo tutti i dischi
         var dischi = data.response;
-        // Inserisco nell'array i dischi
-        contenuto.push(dischi)
+        console.log(dischi);
+
+        for (var i = 0; i < dischi.length; i++) {
+          var disco = dischi[i];
+          console.log(disco);
+
+          var source   = $("#template").html();
+          var template = Handlebars.compile(source);
+          var context = {
+            poster: disco.poster,
+            title: disco.title,
+            author: disco.author,
+            year: disco.year
+          };
+          var html    = template(context);
+
+          $(".cds-container").append(html);
+
+        }
+
+
+
       },
       error: function(){
         alert('Problemi di server');
       }
     }
   );
-
-  // Variabili handlebars
-  var source   = $("#template").html();
-  var template = Handlebars.compile(source);
-  var context = {poster: , title: , author: , year: };
-  var html    = template(context);
-
-  $("#template").append(html);
 
 
 
