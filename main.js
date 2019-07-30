@@ -9,9 +9,6 @@ $(document).ready(function() {
 
   var dischiBoolean = "https://flynn.boolean.careers/exercises/api/array/music";
 
-  // Variabili handlebars
-  var source   = document.getElementById("template").innerHTML;
-  var template = Handlebars.compile(source);
   var contenuto = [];
 
   $.ajax(
@@ -30,7 +27,13 @@ $(document).ready(function() {
     }
   );
 
+  // Variabili handlebars
+  var source   = $("#template").html();
+  var template = Handlebars.compile(source);
+  var context = {poster: , title: , author: , year: };
+  var html    = template(context);
 
+  $("#template").append(html);
 
 
 
